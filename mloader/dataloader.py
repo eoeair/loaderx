@@ -4,12 +4,13 @@ from queue import Queue
 from concurrent.futures import ThreadPoolExecutor
 
 class DataLoader:
-    def __init__(self, dataset, batch_size=256, shuffle=True, prefetch=2, num_epoch=1):
+    def __init__(self, dataset, batch_size=256, shuffle=True, prefetch=2, num_epoch=1, seed=None):
         self.dataset = dataset
         self.batch_size = batch_size
         self.shuffle = shuffle
         self.prefetch = prefetch
         self.num_epoch = num_epoch
+        self.seed = seed
 
         self.indices = list(range(len(dataset)))
         self.queue = Queue(maxsize=prefetch)
@@ -22,6 +23,8 @@ class DataLoader:
     def _prefetch_data(self):
         while not self.stop_signal.is_set() and self.current_epoch < self.num_epoch:
             if self.shuffle:
+                if self.seed is not None:
+                    np.random.seed(self.seed + self.current_epoch)
                 np.random.shuffle(self.indices)
             for i in range(0, len(self.indices), self.batch_size):
                 batch_indices = self.indices[i:i + self.batch_size]         
