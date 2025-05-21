@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mloader"
+name = "loaderx"
 dynamic = ["version"]
 description = "Minimal data loader for Flax"
 readme = "README.md"
@@ -22,7 +22,7 @@ classifiers = [
 dependencies = []
 
 [tool.setuptools.dynamic]
-version = {attr = "mloader.__version__"}
+version = {attr = "loaderx.__version__"}
 
 [project.urls]
 "Homepage" = "https://github.com/eoeair/mloader"
