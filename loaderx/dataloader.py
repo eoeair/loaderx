@@ -17,7 +17,7 @@ class DataLoader:
                 transform should return a tuple of (data, label) after transformation
                 Example:
                 def transform(batch):
-                    return batch[0][..., None] / 255.0 , batch[1].astype(jax.numpy.int32)
+                    return batch[0][..., None] / 255.0 , batch[1].astype(numpy.int32)
             monitor (bool): If True, will print queue size to monitor any I/O bottlenecks.
         
         """
