@@ -153,7 +153,7 @@ class DataLoader:
         """
         self.stop_signal.set()
         
-        for queue in [self.indices, self.batches]:
+        for queue in [self.indices, self.rawes, self.batches]:
             while not queue.empty():
                 try:
                     queue.get_nowait()
